@@ -62,7 +62,7 @@ const SWTestWeightTest = ({ data }) => {
   }, [JSON.stringify(instruments)]);
 
   const testWeightNo = useMemo(() => {
-    return safeParseFloat(form.getValues('testWeightNo'));
+    return safeParseFloat(testWeightNoValue);
   }, [testWeightNoValue]);
 
   const handleMaterialChange = (option, pointIndex) => {
@@ -225,7 +225,7 @@ const SWTestWeightTest = ({ data }) => {
         massComparatorRefEquipmentId: '',
         tagId: 0,
         weights: [],
-        testWeightData: Array.from({ length: 5 }).map(() => [0, 0, 0, 0]),
+        testWeightData: Array.from({ length: MAXIMUM_INSPECTION_POINT }).map(() => [0, 0, 0, 0]),
       }));
 
       setTimeout(() => {
@@ -375,9 +375,7 @@ const SWTestWeightTest = ({ data }) => {
                                   onChange={(option) => handleMaterialChange(option, pointIndex)}
                                   options={materialsOptions}
                                   placeholder='Search by material name'
-                                  noOptionsMessage={() =>
-                                    materialsOptions.isLoading ? 'Loading...' : 'No material found'
-                                  }
+                                  noOptionsMessage={() => 'No material found'}
                                 />
 
                                 {formErrors &&

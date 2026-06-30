@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import { multiply, pow, add } from 'mathjs';
 
 export const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -80,4 +81,13 @@ export function getArrayType(arr) {
   }
 
   return 'unknown-array-type';
+}
+
+//* x - number, n - number, coefficients - number[]
+export function seriesSum(x, n, m, coefficients) {
+  return coefficients.reduce((sum, coefficient, i) => {
+    const exponent = add(n, multiply(m, i));
+    const power = pow(x, exponent);
+    return add(sum, multiply(coefficient, power));
+  }, 0);
 }

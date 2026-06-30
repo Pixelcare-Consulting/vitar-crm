@@ -1285,6 +1285,11 @@ function WorkerDashboard() {
 
   //* Optimize idea query
   useEffect(() => {
+    if (!year?.value) {
+      setJobs({ data: [], isLoading: false, isError: false });
+      return;
+    }
+
     if (!workerId || !auth) {
       setJobs({ data: [], isLoading: false, isError: false });
       return;
@@ -1367,7 +1372,7 @@ function WorkerDashboard() {
       unsubscribe();
       setJobs({ data: [], isLoading: true, isError: false });
     };
-  }, [year.value, workerId, auth]);
+  }, [year?.value, workerId, auth]);
 
   //* set default filtert
   useEffect(() => {

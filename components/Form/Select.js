@@ -70,6 +70,7 @@ const Select = forwardRef((props, ref) => {
           primary25: '#edf2ff',
         },
       })}
+      isClearable
       components={{
         LoadingIndicator,
       }}

@@ -95,7 +95,7 @@ export default function SWTestWeightTest({ calibration, materials, instruments }
                             <div>
                               <div className='text-secondary fs-6'>Material:</div>
                               <div className='text-primary-label fw-semibold text-capitalize'>
-                                {material.material || 'N/A'}
+                                {material?.material || 'N/A'}
                               </div>
                             </div>
                           </div>

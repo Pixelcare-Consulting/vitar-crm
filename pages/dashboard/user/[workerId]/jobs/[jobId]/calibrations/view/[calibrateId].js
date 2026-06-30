@@ -19,6 +19,10 @@ import SWCalibrationMeasurements from '@/sub-components/dashboard/jobs/calibrati
 import SWCalibrationTemplate from '@/sub-components/dashboard/jobs/calibrations/view/mass/standard-weight/SWCalibrationTemplate';
 import SWCalibrationResult from '@/sub-components/dashboard/jobs/calibrations/view/mass/standard-weight/SWCalibrationResult';
 import SWCertificateOfCalibration from '@/sub-components/dashboard/jobs/calibrations/view/mass/standard-weight/SWCertificateOfCalibration';
+import THRCalibrationMeasurements from '@/sub-components/dashboard/jobs/calibrations/view/temperature-humidity/thermocouple/THRCalibrationMeasurements';
+import THRCalibrationTemplate from '@/sub-components/dashboard/jobs/calibrations/view/temperature-humidity/thermocouple/THRCalibrationTemplate';
+import THRCalibrationResult from '@/sub-components/dashboard/jobs/calibrations/view/temperature-humidity/thermocouple/THRCalibrationResult';
+import THRCertificateOfCalibration from '@/sub-components/dashboard/jobs/calibrations/view/temperature-humidity/thermocouple/THRCertificateOfCalibration';
 
 const CalibrationDetails = () => {
   const router = useRouter();
@@ -28,6 +32,11 @@ const CalibrationDetails = () => {
   const [instruments, setInstruments] = useState({ data: [], isLoading: true, isError: false });
   const [materials, setMaterials] = useState({ data: [], isLoading: true, isError: false });
   const [environmental, setEnvironmental] = useState({ data: [], isLoading: true, isError: false });
+
+  const [refTher, setRefTher] = useState({ data: [], isLoading: true, isError: false });
+  const [refInd, setRefInd] = useState({ data: [], isLoading: true, isError: false });
+  const [refWire, setRefWire] = useState({ data: [], isLoading: true, isError: false });
+  const [bath, setBath] = useState({ data: [], isLoading: true, isError: false });
 
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -41,6 +50,32 @@ const CalibrationDetails = () => {
     if (!categoryValue || !variantValue) return null;
 
     switch (categoryValue) {
+      case 'TEMPERATURE & HUMIDITY': {
+        if (variantValue === 'thermocouple') {
+          return [
+            <Tab eventKey='1' title='Measurements'>
+              <THRCalibrationMeasurements {...props} />
+            </Tab>,
+
+            <Tab eventKey='2' title='Reference Instruments'>
+              <CalibrationRefInstrument {...props} />
+            </Tab>,
+
+            <Tab eventKey='3' title='Calibration'>
+              <THRCalibrationTemplate {...props} />
+            </Tab>,
+
+            <Tab eventKey='4' title='Result'>
+              <THRCalibrationResult {...props} />
+            </Tab>,
+
+            <Tab eventKey='6' title='COC'>
+              <THRCertificateOfCalibration {...props} />
+            </Tab>,
+          ];
+        }
+      }
+
       case 'MASS': {
         if (variantValue === 'weight-balance') {
           return [
@@ -234,6 +269,118 @@ const CalibrationDetails = () => {
       });
   }, []);
 
+  //* query refTher
+  useEffect(() => {
+    if (!calibration?.category || calibration?.category !== 'TEMPERATURE & HUMIDITY') return;
+
+    const q = query(collection(db, 'jobCalibrationReferences', 'CR000008', 'data'));
+
+    getDocs(q)
+      .then((snapshot) => {
+        if (!snapshot.empty) {
+          const refTherDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+          setRefTher({
+            data: refTherDocs,
+            isLoading: false,
+            isError: false,
+          });
+
+          return;
+        }
+
+        setRefTher({ data: [], isLoading: false, isError: false });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setRefTher({ data: [], isLoading: false, isError: true });
+      });
+  }, [calibration?.category]);
+
+  //* query refInd
+  useEffect(() => {
+    if (!calibration?.category || calibration?.category !== 'TEMPERATURE & HUMIDITY') return;
+
+    const q = query(collection(db, 'jobCalibrationReferences', 'CR000016', 'data'));
+
+    getDocs(q)
+      .then((snapshot) => {
+        if (!snapshot.empty) {
+          const refIndDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+          setRefInd({
+            data: refIndDocs,
+            isLoading: false,
+            isError: false,
+          });
+
+          return;
+        }
+
+        setRefInd({ data: [], isLoading: false, isError: false });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setRefInd({ data: [], isLoading: false, isError: true });
+      });
+  }, [calibration?.category]);
+
+  //* query refWire (extensions)
+  useEffect(() => {
+    if (!calibration?.category || calibration?.category !== 'TEMPERATURE & HUMIDITY') return;
+
+    const q = query(collection(db, 'jobCalibrationReferences', 'CR000011', 'data'));
+
+    getDocs(q)
+      .then((snapshot) => {
+        if (!snapshot.empty) {
+          const refWireDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+          setRefWire({
+            data: refWireDocs,
+            isLoading: false,
+            isError: false,
+          });
+
+          return;
+        }
+
+        setRefWire({ data: [], isLoading: false, isError: false });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setRefWire({ data: [], isLoading: false, isError: true });
+      });
+  }, [calibration?.category]);
+
+  //* query bath
+  useEffect(() => {
+    if (!calibration?.category || calibration?.category !== 'TEMPERATURE & HUMIDITY') return;
+
+    const q = query(collection(db, 'jobCalibrationReferences', 'CR000012', 'data'));
+
+    getDocs(q)
+      .then((snapshot) => {
+        if (!snapshot.empty) {
+          const refBathDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+
+          setBath({
+            data: refBathDocs,
+            isLoading: false,
+            isError: false,
+          });
+
+          return;
+        }
+
+        setBath({ data: [], isLoading: false, isError: false });
+      })
+      .catch((err) => {
+        console.error(err.message);
+        setBath({ data: [], isLoading: false, isError: true });
+      });
+  }, [calibration?.category]);
+
   if (isLoading) {
     return (
       <div className='d-flex justify-content-center align-items-center' style={{ height: '100vh' }}>
@@ -330,7 +477,16 @@ const CalibrationDetails = () => {
                 <CalibrationSummary calibration={calibration} />
               </Tab>
 
-              {renderTabs({ calibration, instruments, materials, environmental })}
+              {renderTabs({
+                calibration,
+                instruments,
+                materials,
+                environmental,
+                refTher,
+                refInd,
+                refWire,
+                bath,
+              })}
             </Tabs>
           </Card.Body>
         </Card>

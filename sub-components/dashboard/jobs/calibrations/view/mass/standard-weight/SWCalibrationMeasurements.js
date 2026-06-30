@@ -1,8 +1,5 @@
 import { TRACEABILITY_CALIBRATION_LAB } from '@/schema/calibrations/common-constant';
-import {
-  ACCURACY_CLASS,
-  UNIT_USED_FOR_COC,
-} from '@/schema/calibrations/mass/standard-weight';
+import { ACCURACY_CLASS, UNIT_USED_FOR_COC } from '@/schema/calibrations/mass/standard-weight';
 import { formatToDicimalString } from '@/utils/calibrations/data-formatter';
 import { safeParseFloat } from '@/utils/common';
 import { add, divide, exp, mean, multiply, subtract } from 'mathjs';
@@ -178,9 +175,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <Thermometer size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Ambient Temperature (Min):
-                </div>
+                <div className='text-secondary fs-6'>Ambient Temperature (Min):</div>
                 <div className='text-primary-label fw-semibold e'>
                   {calibration?.minTemperature || 'N/A'} °C
                 </div>
@@ -197,9 +192,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <ThermometerHigh size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Ambient Temperature (Max):
-                </div>
+                <div className='text-secondary fs-6'>Ambient Temperature (Max):</div>
                 <div className='text-primary-label fw-semibold '>
                   {calibration?.maxTemperature ?? 'N/A'} °C
                 </div>
@@ -216,9 +209,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <ThermometerHalf size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Ambient Temperature (Average):
-                </div>
+                <div className='text-secondary fs-6'>Ambient Temperature (Average):</div>
                 <div className='text-primary-label fw-semibold '>
                   {averageTemprature ?? 'N/A'} °C
                 </div>
@@ -235,9 +226,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <ThermometerSnow size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Relative Humidity (Min):
-                </div>
+                <div className='text-secondary fs-6'>Relative Humidity (Min):</div>
                 <div className='text-primary-label fw-semibold '>
                   {calibration?.minRHumidity ?? 'N/A'} %rh
                 </div>
@@ -254,9 +243,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <ThermometerSun size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Relative Humidity (Max):
-                </div>
+                <div className='text-secondary fs-6'>Relative Humidity (Max):</div>
                 <div className='text-primary-label fw-semibold '>
                   {calibration?.maxRHumidity ?? 'N/A'} %rh
                 </div>
@@ -273,9 +260,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <ThermometerHalf size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Relative Humidity (Average):
-                </div>
+                <div className='text-secondary fs-6'>Relative Humidity (Average):</div>
                 <div className='text-primary-label fw-semibold '>
                   {averageRHumidity ?? 'N/A'} %rh
                 </div>
@@ -292,9 +277,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <Speedometer2 size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Atmospere Pressure (Min):
-                </div>
+                <div className='text-secondary fs-6'>Atmospere Pressure (Min):</div>
                 <div className='text-primary-label fw-semibold'>
                   {calibration?.minAPressure ?? 'N/A'} mbar
                 </div>
@@ -311,9 +294,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <Speedometer size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Atmospere Pressure (Max):
-                </div>
+                <div className='text-secondary fs-6'>Atmospere Pressure (Max):</div>
                 <div className='text-primary-label fw-semibold '>
                   {calibration?.maxAPressure ?? 'N/A'} mbar
                 </div>
@@ -330,9 +311,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <Speedometer2 size={20} />
               </div>
               <div>
-                <div className='text-secondary fs-6'>
-                  Atmospere Pressure (Average):
-                </div>
+                <div className='text-secondary fs-6'>Atmospere Pressure (Average):</div>
                 <div className='text-primary-label fw-semibold'>
                   {averageAPressure ?? 'N/A'} mbar
                 </div>
@@ -353,9 +332,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                   Density of Moist Air, P<sub>a</sub> (Kg m<sup>-3</sup>)
                 </div>
                 <div className='text-primary-label fw-semibold'>
-                  {densityOfMoistAir
-                    ? formatToDicimalString(densityOfMoistAir, 4)
-                    : 'N/A'}
+                  {densityOfMoistAir ? formatToDicimalString(densityOfMoistAir, 4) : 'N/A'}
                 </div>
               </div>
             </div>
@@ -391,7 +368,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
               <div>
                 <div className='text-secondary fs-6'>Material:</div>
                 <div className='text-primary-label fw-semibold text-capitalize'>
-                  {material.material || 'N/A'}
+                  {material?.material || 'N/A'}
                 </div>
               </div>
             </div>
@@ -442,8 +419,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
           <div>
             <h4 className='mb-0'>Environmental</h4>
             <p className='text-muted fs-6 mb-0'>
-              Details of environmental values used for the calculation of the
-              specified field
+              Details of environmental values used for the calculation of the specified field
             </p>
           </div>
         </div>
@@ -583,9 +559,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
         <div className='d-flex justify-content-between align-items-center'>
           <div>
             <h4 className='mb-0'>Traceability</h4>
-            <p className='text-muted fs-6 mb-0'>
-              Details of the calibration traceability.
-            </p>
+            <p className='text-muted fs-6 mb-0'>Details of the calibration traceability.</p>
           </div>
         </div>
       </Card.Header>
@@ -639,9 +613,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <div className='text-primary-label fw-semibold text-capitalize'>
                   {calibration?.traceabilityCalibrationLab?.length > 0
                     ? TRACEABILITY_CALIBRATION_LAB.filter((lab) =>
-                        calibration?.traceabilityCalibrationLab?.includes(
-                          lab.value
-                        )
+                        calibration?.traceabilityCalibrationLab?.includes(lab.value)
                       )
                         .filter(Boolean)
                         .map((lab) => `${lab.name} - ${lab.accreditationNo}`)
@@ -665,9 +637,7 @@ function SWCalibrationMeasurements({ calibration, materials, environmental }) {
                 <div className='text-primary-label fw-semibold text-capitalize'>
                   {calibration?.traceabilityCalibrationLab?.length > 0
                     ? TRACEABILITY_CALIBRATION_LAB.filter((lab) =>
-                        calibration?.traceabilityCalibrationLab?.includes(
-                          lab.value
-                        )
+                        calibration?.traceabilityCalibrationLab?.includes(lab.value)
                       )?.[0]?.signatory
                     : 'N/A'}
                 </div>

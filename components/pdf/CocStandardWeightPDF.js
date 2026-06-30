@@ -1139,7 +1139,9 @@ const CocStandardWeightPDF = ({ calibration, instruments, calibratedBy, approved
           <View>
             {calibration?.accuracyClass !== 'N/A' && (
               <>
-                <Text style={{ fontSize: 7 }}>Note: MPE with reference to OIML R111-1</Text>
+                <Text style={{ fontSize: 7, fontFamily: 'TimesNewRomanItalic' }}>
+                  Note: MPE with reference to OIML R111-1
+                </Text>
                 <Text style={{ fontSize: 7, marginBottom: 4 }}>
                   MPE - Maximum Permissible Error
                 </Text>

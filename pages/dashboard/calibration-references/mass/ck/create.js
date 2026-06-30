@@ -66,7 +66,7 @@ const CreateCk = () => {
 
       <Card className='shadow-sm'>
         <Card.Body>
-          <CkForm />
+          <CkForm jobCalibrationRefId='CR000003' path='mass' />
         </Card.Body>
       </Card>
     </>

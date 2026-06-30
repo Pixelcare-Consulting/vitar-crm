@@ -8,7 +8,7 @@ export const formatToDicimalString = (value, dicimalPlaces = 4) => {
     // if (isNaN(value)) return '';
     // return value.toFixed(dicimalPlaces);
     return math.format(value, { notation: 'fixed', precision: dicimalPlaces });
-  } catch (error) {
+  } catch (err) {
     console.error(err);
     console.trace();
     console.error('Error formatting decimal value:', value);

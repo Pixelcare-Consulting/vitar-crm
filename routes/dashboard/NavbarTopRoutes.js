@@ -162,6 +162,92 @@ export const getNavbarItems = (role) => {
             children: [
               {
                 id: uuid(),
+                menuitem: 'Temperature & Humidity',
+                icon: 'Thermometer',
+                children: [
+                  {
+                    id: uuid(),
+                    menuitem: 'Temperature Instruments',
+                    link: '/calibration-references/temperature-humidity/temperature-instruments',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Extensions',
+                    link: '/calibration-references/temperature-humidity/extensions',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Bath',
+                    link: '/calibration-references/temperature-humidity/bath',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Bath Stability/Uniformity',
+                    link: '/calibration-references/temperature-humidity/bath/stability-uniformity',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Bath Stability',
+                    link: '/calibration-references/temperature-humidity/bath/stability',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Bath Uniformity',
+                    link: '/calibration-references/temperature-humidity/bath/uniformity',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Aux',
+                    link: '/calibration-references/temperature-humidity/aux',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Ther',
+                    link: '/calibration-references/temperature-humidity/ther',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Wires',
+                    link: '/calibration-references/temperature-humidity/wires',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Meter',
+                    link: '/calibration-references/temperature-humidity/Meter',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'CK',
+                    link: '/calibration-references/temperature-humidity/ck',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'CMC',
+                    link: '/calibration-references/temperature-humidity/cmc',
+                    icon: 'Table',
+                  },
+                  {
+                    id: uuid(),
+                    menuitem: 'Special',
+                    link: '/calibration-references/temperature-humidity/special',
+                    icon: 'Table',
+                  },
+                ],
+              },
+
+              {
+                id: uuid(),
                 menuitem: 'Mass',
                 link: '/#',
                 icon: 'BoxSeam',

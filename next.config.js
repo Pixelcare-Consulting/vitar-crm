@@ -374,6 +374,300 @@ const nextConfig = {
         source: '/calibration-references/mass/environmental/view/:refId',
         destination: '/dashboard/calibration-references/mass/environmental/view/:refId',
       },
+      //* Ther
+      {
+        source: '/calibration-references/temperature-humidity/ther',
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/edit-ther/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/edit-ther/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/view/:refId',
+      },
+      //* Ther Temperature References
+      {
+        source: '/calibration-references/temperature-humidity/ther/:refId/temperature-references',
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/:refId/temperature-references/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/:refId/temperature-references/create', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/:refId/temperature-references/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ther/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/ther/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+      },
+      //* Wires
+      {
+        source: '/calibration-references/temperature-humidity/wires',
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/edit-wires/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/edit-wires/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/view/:refId',
+      },
+      //* Wires Temperature References
+      {
+        source: '/calibration-references/temperature-humidity/wires/:refId/temperature-references',
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/:refId/temperature-references/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/:refId/temperature-references/create', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/:refId/temperature-references/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/wires/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/wires/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+      },
+
+      //* Aux
+      {
+        source: '/calibration-references/temperature-humidity/aux',
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/edit-aux/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/edit-aux/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/view/:refId',
+      },
+      //* Aux Temperature References
+      {
+        source: '/calibration-references/temperature-humidity/aux/:refId/temperature-references',
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/:refId/temperature-references/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/:refId/temperature-references/create', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/:refId/temperature-references/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/aux/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/aux_/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+      },
+      //* Extensions
+      {
+        source: '/calibration-references/temperature-humidity/extensions',
+        destination: '/dashboard/calibration-references/temperature-humidity/extensions/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/extensions/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/extensions/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/extensions/edit-extensions/:refId',
+        destination:
+          '/dashboard/calibration-references/temperature-humidity/extensions/edit-extensions/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/extensions/view/:refId',
+        destination:
+          '/dashboard/calibration-references/temperature-humidity/extensions/view/:refId',
+      },
+      //* Bath
+      {
+        source: '/calibration-references/temperature-humidity/bath',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/edit-bath/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/edit-bath/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/view/:refId',
+      },
+      //* Bath Stability/Uniformity
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability-uniformity',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability-uniformity/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability-uniformity/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability-uniformity/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability-uniformity/edit-stability-uniformity/:refId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability-uniformity/edit-stability-uniformity/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability-uniformity/view/:refId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability-uniformity/view/:refId', // prettier-ignore
+      },
+      //* Bath Stability
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability/edit-stability/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability/edit-stability/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/stability/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/stability/view/:refId', // prettier-ignore
+      },
+      //* Bath Uniformity
+      {
+        source: '/calibration-references/temperature-humidity/bath/uniformity',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/uniformity/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/uniformity/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/uniformity/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/uniformity/edit-uniformity/:refId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/uniformity/edit-uniformity/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/bath/uniformity/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/bath/uniformity/view/:refId', // prettier-ignore
+      },
+      //* Meter
+      {
+        source: '/calibration-references/temperature-humidity/meter',
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/edit-meter/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/edit-meter/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/view/:refId',
+      },
+      //* Meter Temperature References
+      {
+        source: '/calibration-references/temperature-humidity/meter/:refId/temperature-references',
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/:refId/temperature-references/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/:refId/temperature-references/create', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/:refId/temperature-references/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/:refId/temperature-references/edit-temperature-references/:tempRefId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/meter/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+        destination: '/dashboard/calibration-references/temperature-humidity/meter/:refId/temperature-references/view/:tempRefId', // prettier-ignore
+      },
+      //* Temperature instruments
+      {
+        source: '/calibration-references/temperature-humidity/temperature-instruments',
+        destination: '/dashboard/calibration-references/temperature-humidity/temperature-instruments/list', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/temperature-instruments/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/temperature-instruments/create', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/temperature-instruments/edit-temperature-instruments/:refId', // prettier-ignore
+        destination:  '/dashboard/calibration-references/temperature-humidity/temperature-instruments/edit-temperature-instruments/:refId', // prettier-ignore
+      },
+      {
+        source: '/calibration-references/temperature-humidity/temperature-instruments/view/:refId',
+        destination:
+          '/dashboard/calibration-references/temperature-humidity/temperature-instruments/view/:refId',
+      },
+      //* CK
+      {
+        source: '/calibration-references/temperature-humidity/ck',
+        destination: '/dashboard/calibration-references/temperature-humidity/ck/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ck/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/ck/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ck/edit-ck/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/ck/edit-ck/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/ck/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/ck/view/:refId',
+      },
+      //* CMC
+      {
+        source: '/calibration-references/temperature-humidity/cmc',
+        destination: '/dashboard/calibration-references/temperature-humidity/cmc/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/cmc/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/cmc/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/cmc/edit-cmc/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/cmc/edit-cmc/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/cmc/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/cmc/view/:refId',
+      },
+      //* Special
+      {
+        source: '/calibration-references/temperature-humidity/special',
+        destination: '/dashboard/calibration-references/temperature-humidity/special/list',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/special/create',
+        destination: '/dashboard/calibration-references/temperature-humidity/special/create',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/special/edit-special/:refId',
+        destination:
+          '/dashboard/calibration-references/temperature-humidity/special/edit-special/:refId',
+      },
+      {
+        source: '/calibration-references/temperature-humidity/special/view/:refId',
+        destination: '/dashboard/calibration-references/temperature-humidity/special/view/:refId',
+      },
 
       // AUTHENTICATION
       {
