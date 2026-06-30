@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
-//* Mass Weight Balance Variant's Constants, Schemas and Enums
 import { traceabilityTypeEnum } from '../common-enums';
 import { calibrationReferenceInstrumentsSchema, calibrationSummarySchema } from '../common-schema';
 
+//* Mass Weight Balance Variant's Constants, Schemas and Enums
 export const RANGE_TYPE = ['single', 'multi'];
 export const RANGE_COUNT = ['1', '2', '3'];
 

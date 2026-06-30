@@ -64,7 +64,8 @@ const SWCalibrationTemplateForm = ({ data, isLoading, handleNext, handlePrevious
     if (data && cData.length > 0) {
       //* only loead the data when all necessary options are loaded
       if (
-        (data && (isLoadedCalibrationData || unitUsedForCOCOptions.length < 1)) ||
+        isLoadedCalibrationData ||
+        unitUsedForCOCOptions.length < 1 ||
         materialsOptions.length < 1 ||
         nominalValueOptions.length < 1 ||
         tagIdOptions.length < 1 ||

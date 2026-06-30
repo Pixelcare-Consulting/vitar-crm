@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { parseExcelFile } from '../utils/excelParser';
 import { Alert, Button, ProgressBar, Card, Badge } from 'react-bootstrap';
 import { resumeUpload } from '@/services/excelUploadService';
@@ -21,12 +21,40 @@ import { dataExcelParser, dataProcessExcelUploader } from './Uploader';
 //* - data/upload/jobCalibrationReferences_CR000006_data/CR
 //* - data/upload/jobCalibrationReferences_CR000007_data/CR
 
-const ExcelUploader = ({ dataKey, prefix }) => {
+//* - data/upload/jobCalibrationReferences_CR000008_data/CR
+//* - data/upload/jobCalibrationReferences_CR000008_data_temperatureRefs_<idCode>/TR?idCode=ST-R1  - idCode e.g (ST-R1, ST-R2 etc)
+
+//* - data/upload/jobCalibrationReferences_CR000009_data/CR
+//* - data/upload/jobCalibrationReferences_CR000009_data_temperatureRefs_<code>/TR?code=ST-NF1  - idCode e.g (ST-NF1, ST-NF2 etc)
+
+//* with Type
+//* - data/upload/jobCalibrationReferences_CR000009_data/CR
+//* - data/upload/jobCalibrationReferences_CR000009_data_temperatureRefs_<code>_<type>/TR?code=ST-NF1&type=T  - idCode e.g (ST-NF1, ST-NF2 etc), type e.g (T, R, -)
+
+//* - data/upload/jobCalibrationReferences_CR000010_data/CR
+//* - data/upload/jobCalibrationReferences_CR000010_data_temperatureRefs_<idCode>/TR?idCode=ST-R1  - idCode e.g (ST-R1, ST-R2 etc)
+
+//* - data/upload/jobCalibrationReferences_CR000011_data/CR
+//* - data/upload/jobCalibrationReferences_CR000012_data/CR
+//* - data/upload/jobCalibrationReferences_CR000013_data/CR
+//* - data/upload/jobCalibrationReferences_CR000014_data/CR
+//* - data/upload/jobCalibrationReferences_CR000015_data/CR
+
+//* - data/upload/jobCalibrationReferences_CR000016_data/CR
+//* - data/upload/jobCalibrationReferences_CR000016_data_temperatureRefs_<code>/TR?code=ST-NF1  - idCode e.g (ST-NF1, ST-NF2 etc)
+
+//* - data/upload/jobCalibrationReferences_CR000017_data/CR
+//* - data/upload/jobCalibrationReferences_CR000018_data/CR
+//* - data/upload/jobCalibrationReferences_CR000019_data/CR
+
+const ExcelUploader = ({ dataKey, prefix, searchParams }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [progress, setProgress] = useState(0);
   const [stats, setStats] = useState(null);
   const [canResume, setCanResume] = useState(false);
+
+  const searchParamsObj = Object.fromEntries(searchParams.entries());
 
   useEffect(() => {
     const lastDataId = localStorage.getItem(`lastProcessed${dataKey}`);
@@ -56,6 +84,7 @@ const ExcelUploader = ({ dataKey, prefix }) => {
         data,
         onProgress: (progress) => setProgress(progress),
         onStats: (stats) => setStats(stats),
+        searchParams,
       });
     } catch (error) {
       console.error('Upload error:', error);
@@ -97,6 +126,9 @@ const ExcelUploader = ({ dataKey, prefix }) => {
         <p className='text-muted mb-0' style={{ fontSize: '11px' }}>
           Linear data upload only
         </p>
+
+        <h5 className='text-capitalize mb-0 text-center mt-5'>Search Params:</h5>
+        <pre className='bg-red-500'>{JSON.stringify(searchParamsObj)}</pre>
       </Card.Header>
       <Card.Body>
         <div className='mb-3'>

@@ -23,6 +23,8 @@ import WBCalibrationMeasurementsForm from './tabls-form/mass/weight-balance/WBCa
 import WBCalibrationTemplateForm from './tabls-form/mass/weight-balance/WBCalibrationTemplateForm';
 import SWCalibrationMeasurementsForm from './tabls-form/mass/standard-weight/SWCalibrationMeasurementsForm';
 import SWCalibrationTemplateForm from './tabls-form/mass/standard-weight/SWCalibrationTemplateForm';
+import THRCalibrationMeasurementsForm from './tabls-form/temperature-humidity/thermocouple/THRCalibrationMeasurementsForm';
+import THRCalibrationTemplateForm from './tabls-form/temperature-humidity/thermocouple/THRCalibrationTemplateForm';
 
 const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
   const auth = useAuth();
@@ -368,6 +370,25 @@ const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
     const formCalibrationData = formData?.data || [];
 
     switch (category) {
+      case 'TEMPERATURE & HUMIDITY': {
+        if (variant === 'thermocouple') {
+          return {
+            corrections: formData?.corrections || [],
+            resultCorrections: formData?.resultCorrections || [],
+            coverageFactors: formData?.coverageFactors || [],
+            expandedUncertainties: formData?.expandedUncertainties || [],
+            resultEsts: formData?.resultEsts || [],
+            resultInfoEst: formData?.resultInfoEst || 0,
+            resultInfoK: formData?.resultInfoK || 0,
+            resultExpandedUncertainties: formData?.resultExpandedUncertainties || [],
+            refReadingSummaries: formData?.refReadingSummaries || [],
+            testBefAdjReadingSummaries: formData?.testBefAdjReadingSummaries || [],
+          };
+        }
+
+        return null;
+      }
+
       case 'MASS': {
         if (variant === 'weight-balance') {
           return formCalibrationData.map((cData, i) => {
@@ -411,8 +432,6 @@ const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
 
   const handleSubmit = useCallback(
     async ({ massComparatorRefEquipment, ...formData }) => {
-      console.log({ formData });
-
       try {
         setIsLoading(true);
 
@@ -514,17 +533,21 @@ const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
           });
         }
 
-        if (isAdmin) {
-          window.location.assign(
-            `/jobs/${formData.jobId}/calibrations/view/${formData.calibrateId}`
-          );
-        } else {
-          workerId &&
-            window.location.assign(
-              `/user/${workerId}/jobs/${formData.jobId}/calibrations/view/${formData.calibrateId}`
-            );
-        }
         toast.success(`Calibration ${data ? 'updated' : 'created'} successfully.`, {position: 'top-right'}); // prettier-ignore
+
+        setTimeout(() => {
+          if (isAdmin) {
+            window.location.assign(
+              `/jobs/${formData.jobId}/calibrations/view/${formData.calibrateId}`
+            );
+          } else {
+            workerId &&
+              window.location.assign(
+                `/user/${workerId}/jobs/${formData.jobId}/calibrations/view/${formData.calibrateId}`
+              );
+          }
+        }, 1500);
+
         setIsLoading(false);
         setActiveKey((prev) => prev - 1);
       } catch (error) {
@@ -684,6 +707,24 @@ const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
     if (!categoryValue || !variantValue) return null;
 
     switch (categoryValue) {
+      case 'TEMPERATURE & HUMIDITY': {
+        if (variantValue === 'thermocouple') {
+          return [
+            <Tab eventKey='1' title='Measurements'>
+              <THRCalibrationMeasurementsForm {...props} />
+            </Tab>,
+
+            <Tab eventKey='2' title='Reference Instruments'>
+              <CalibrationRefInstrumentForm {...props} />
+            </Tab>,
+
+            <Tab eventKey='3' title='Calibration'>
+              <THRCalibrationTemplateForm {...props} />
+            </Tab>,
+          ];
+        }
+      }
+
       case 'MASS': {
         if (variantValue === 'weight-balance') {
           return [
@@ -824,7 +865,7 @@ const CalibrationForm = ({ data, isAdmin = true, calibrations }) => {
           ]
         }
       /> */}
-      {/* <FormDebug form={form} keys={['massComparatorRefEquipmentIds']} /> */}
+      {/* <FormDebug form={form} keys={['refDecimal']} /> */}
 
       {/* //* Render specific tabs based on the category and variant selected */}
       <FormProvider {...form}>

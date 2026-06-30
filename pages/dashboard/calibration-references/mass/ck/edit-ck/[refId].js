@@ -148,7 +148,7 @@ function EditCk() {
 
       <Card className='shadow-sm'>
         <Card.Body>
-          <CkForm data={ck} />
+          <CkForm data={ck} jobCalibrationRefId='CR000003' path='mass' />
         </Card.Body>
       </Card>
     </>

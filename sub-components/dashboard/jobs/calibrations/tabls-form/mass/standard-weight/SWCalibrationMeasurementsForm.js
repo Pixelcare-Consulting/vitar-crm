@@ -27,7 +27,7 @@ import {
   Row,
   Tooltip,
 } from 'react-bootstrap';
-import { Controller, useFieldArray, useFormContext, useWatch } from 'react-hook-form';
+import { Controller, useFormContext, useWatch } from 'react-hook-form';
 
 const SWCalibrationMeasurementsForm = ({ data, isLoading, handleNext, handlePrevious }) => {
   const auth = useAuth();
@@ -182,7 +182,10 @@ const SWCalibrationMeasurementsForm = ({ data, isLoading, handleNext, handlePrev
       q,
       (snapshot) => {
         if (!snapshot.empty) {
-          const materialDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+          const materialDocs = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
 
           setMaterialsOptions({
             data: materialDocs.map((m) => ({
@@ -226,7 +229,10 @@ const SWCalibrationMeasurementsForm = ({ data, isLoading, handleNext, handlePrev
       q,
       (snapshot) => {
         if (!snapshot.empty) {
-          const environmentalDocs = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+          const environmentalDocs = snapshot.docs.map((doc) => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
 
           setEnvironmentalOptions({
             data: environmentalDocs.map((envDoc) => ({
@@ -353,7 +359,7 @@ const SWCalibrationMeasurementsForm = ({ data, isLoading, handleNext, handlePrev
   //* set accuracy class, if data exist
   useEffect(() => {
     if (data && accuracyClassOptions.length > 0) {
-      const selectedAccuracyClass = accuracyClassOptions.find( (option) => option.value === data.accuracyClass); //prettier-ignore
+      const selectedAccuracyClass = accuracyClassOptions.find((option) => option.value === data.accuracyClass); //prettier-ignore
       form.setValue('accuracyClass', selectedAccuracyClass);
     }
   }, [JSON.stringify(data), JSON.stringify(accuracyClassOptions)]);

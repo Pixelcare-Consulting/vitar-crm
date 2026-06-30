@@ -1,4 +1,3 @@
-import FormDebug from '@/components/Form/FormDebug';
 import { RequiredLabel } from '@/components/Form/RequiredLabel';
 import Select from '@/components/Form/Select';
 import { useAuth } from '@/contexts/AuthContext';
@@ -13,13 +12,10 @@ import { format } from 'date-fns';
 import {
   collection,
   doc,
-  getDoc,
   getDocs,
-  limit,
   onSnapshot,
   query,
   serverTimestamp,
-  setDoc,
   where,
   writeBatch,
 } from 'firebase/firestore';
@@ -66,7 +62,10 @@ const EnvironmentalForm = ({ data }) => {
         mainDocRef,
         {
           ...formData,
-          ...(!data && { createdAt: serverTimestamp(), createdBy: auth.currentUser }),
+          ...(!data && {
+            createdAt: serverTimestamp(),
+            createdBy: auth.currentUser,
+          }),
           updatedAt: serverTimestamp(),
           updatedBy: auth.currentUser,
         },
@@ -184,7 +183,7 @@ const EnvironmentalForm = ({ data }) => {
                     control={form.control}
                     render={({ field }) => (
                       <>
-                        <Form.Control {...field} id='code' placeholder='Enter code' type='string' />
+                        <Form.Control {...field} id='code' placeholder='Enter Code' type='string' />
 
                         {formErrors && formErrors.code?.message && (
                           <Form.Text className='text-danger'>{formErrors.code?.message}</Form.Text>

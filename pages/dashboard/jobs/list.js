@@ -1357,6 +1357,11 @@ const JobList = () => {
 
   //* Optimize query job header
   useEffect(() => {
+    if (!year?.value) {
+      setJobs({ data: [], isLoading: false, isError: false });
+      return;
+    }
+
     const startOfYear = new Date(year.value, 0, 1); //* Jan 1
     const endOfYear = new Date(year.value + 1, 0, 1); //* Jan 1 of next year
 
@@ -1431,7 +1436,7 @@ const JobList = () => {
       unsubscribe();
       setJobs({ data: [], isLoading: true, isError: false });
     };
-  }, [year.value]);
+  }, [year?.value]);
 
   return (
     <>

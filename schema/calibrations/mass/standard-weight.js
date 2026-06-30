@@ -1,12 +1,19 @@
 import { z } from 'zod';
 import { traceabilityTypeEnum } from '../common-enums';
-import { calibrationReferenceInstrumentsSchema, calibrationSummarySchema } from '../common-schema';
+import {
+  calibrationReferenceInstrumentsSchema,
+  calibrationSummarySchema,
+} from '../common-schema';
 
 //* Mass Standard Weight Variant's Constants, Schemas and Enums
 export const ACCURACY_CLASS = ['F2', 'M1', 'M2', 'M3', 'N/A'];
 
 export const UNIT_USED_FOR_COC = ['milligram', 'gram', 'kilogram'];
-export const UNIT_USED_FOR_COC_ABBREVIATION_MAP = { gram: 'g', kilogram: 'kg', milligram: 'mg' };
+export const UNIT_USED_FOR_COC_ABBREVIATION_MAP = {
+  gram: 'g',
+  kilogram: 'kg',
+  milligram: 'mg',
+};
 
 export const NOMINAL_VALUE = [
   '0.001',
@@ -37,16 +44,6 @@ export const NOMINAL_VALUE = [
 export const TAG_ID = ['1', '1E', '1F', '1G', '1A', '1C']; //* removed ST-MW prefix
 export const MAXIMUM_INSPECTION_POINT = 5;
 
-//TODO: Store it in the jobCalibrationReferences
-//TODO: Finalize its structure - Note: Need clarification from VITAR
-export const REF_STANDARDS = [
-  { tagId: 'ST-PI 3', parameter: '', u: '30', unit: 'Pa', dueDate: new Date('12-27-2024') }, // prettier-ignore
-  { tagId: 'ST-TH4', parameter: 'Temperature', u: '0.7', unit: 'K', dueDate: new Date('09-21-2021') }, // prettier-ignore
-  { tagId: 'ST-TH4', parameter: 'Humidity', u: '3', unit: '%r.h.', dueDate: new Date('09-21-2021') }, // prettier-ignore
-  { tagId: 'Other THM', parameter: 'Temperature', u: '0.7', unit: 'K', dueDate: null }, // prettier-ignore
-  { tagId: 'Other THM', parameter: 'Humidity', u: '3', unit: '%r.h.', dueDate: null }, // prettier-ignore
-];
-
 export const accuracyClassEnum = z.enum(ACCURACY_CLASS, {
   message: 'Please select an accuracy class',
 });
@@ -74,7 +71,9 @@ export const calibrationMeasurementSchema = z.object({
   testWeightNo: z.coerce
     .number()
     .min(1, { message: 'Please enter a no. of test weight' })
-    .max(30, { message: 'No. of test weight should be less than or equal to 30' })
+    .max(30, {
+      message: 'No. of test weight should be less than or equal to 30',
+    })
     .default(0),
   minTemperature: z.coerce.number().default(0),
   maxTemperature: z.coerce.number().default(0),
@@ -89,25 +88,37 @@ export const calibrationMeasurementSchema = z.object({
       return formData;
     }),
   material: z
-    .union([z.string({ message: 'Please select material' }), z.record(z.string(), z.any())])
+    .union([
+      z.string({ message: 'Please select material' }),
+      z.record(z.string(), z.any()),
+    ])
     .transform((formData) => {
       if (typeof formData === 'object') return formData.value;
       return formData;
     }),
   envUP: z
-    .union([z.string({ message: 'Please environmental value' }), z.record(z.string(), z.any())])
+    .union([
+      z.string({ message: 'Please environmental value' }),
+      z.record(z.string(), z.any()),
+    ])
     .transform((formData) => {
       if (typeof formData === 'object') return formData.value;
       return formData;
     }),
   envUT: z
-    .union([z.string({ message: 'Please environmental value' }), z.record(z.string(), z.any())])
+    .union([
+      z.string({ message: 'Please environmental value' }),
+      z.record(z.string(), z.any()),
+    ])
     .transform((formData) => {
       if (typeof formData === 'object') return formData.value;
       return formData;
     }),
   envUHr: z
-    .union([z.string({ message: 'Please environmental value' }), z.record(z.string(), z.any())])
+    .union([
+      z.string({ message: 'Please environmental value' }),
+      z.record(z.string(), z.any()),
+    ])
     .transform((formData) => {
       if (typeof formData === 'object') return formData.value;
       return formData;
@@ -121,10 +132,14 @@ export const calibrationMeasurementSchema = z.object({
       return formData;
     }),
   traceabilityCountry: z
-    .union([z.string().min(1, { message: 'Please select country' }), z.record(z.string(), z.any())])
+    .union([
+      z.string().min(1, { message: 'Please select country' }),
+      z.record(z.string(), z.any()),
+    ])
     .nullish()
     .transform((formData) => {
-      if (typeof formData === 'object' && formData !== null) return formData.value;
+      if (typeof formData === 'object' && formData !== null)
+        return formData.value;
       return formData;
     }),
   traceabilityCalibrationLab: z
@@ -150,7 +165,8 @@ export const calibrationMeasurementSchema = z.object({
     ])
     .nullish()
     .transform((formData) => {
-      if (typeof formData === 'object' && formData !== null) return formData.value;
+      if (typeof formData === 'object' && formData !== null)
+        return formData.value;
       return formData;
     }),
   calibrationLocation: z.string().default(''),
@@ -207,7 +223,9 @@ export const calibrationMassSchema = z.object({
         })
         .default([]),
       weights: z.array(z.string().min(1, 'Please enter a value')).default([]),
-      testWeightData: z.array(z.array(z.coerce.number().default(0))).default([]),
+      testWeightData: z
+        .array(z.array(z.coerce.number().default(0)))
+        .default([]),
     })
   ),
 });
@@ -220,7 +238,9 @@ const calibrationResultSchema = z.object({
   mpes: z.array(z.coerce.number()).default([]),
   unitsUsedForCOC: z.array(z.string()).default([]),
   coverageFactors: z.array(z.coerce.number()).default([]),
-  massComparatorRefEquipment: z.array(z.record(z.string(), z.any())).default([]),
+  massComparatorRefEquipment: z
+    .array(z.record(z.string(), z.any()))
+    .default([]),
 });
 
 export const CalibrationStandardWeightSchema = z

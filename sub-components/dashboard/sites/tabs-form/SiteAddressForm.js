@@ -49,11 +49,15 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
         if (res.status === 200 && countries?.length > 0) {
           setCountriesOptions({
-            data: countries.map((country) => ({ value: country.name, label: country.name })),
+            data: countries.map((country) => ({
+              value: country.name,
+              label: country.name,
+            })),
             isLoading: false,
             isError: false,
           });
-        } else setCountriesOptions({ data: [], isLoading: false, isError: false });
+        } else
+          setCountriesOptions({ data: [], isLoading: false, isError: false });
       } catch (error) {
         console.error(error.message);
         setCountriesOptions({ data: [], isLoading: false, isError: true });
@@ -65,12 +69,18 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
   //* set address country if data exist
   useEffect(() => {
-    if (data && countriesOptions.data.length > 0 && data.addresses?.length > 0) {
+    if (
+      data &&
+      countriesOptions.data.length > 0 &&
+      data.addresses?.length > 0
+    ) {
       console.log({ addresses: data.addresses });
       const addresses = data.addresses.map((address) => ({
         ...address,
         country: address.country
-          ? countriesOptions.data.find((country) => country.value === address.country)
+          ? countriesOptions.data.find(
+              (country) => country.value === address.country
+            )
           : '',
       }));
 
@@ -87,13 +97,16 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
               <div>
                 <h5 className='mb-1'>
                   Address Details
-                  <span className='text-danger' style={{ marginLeft: '4px', cursor: 'help' }}>
+                  <span
+                    className='text-danger'
+                    style={{ marginLeft: '4px', cursor: 'help' }}
+                  >
                     *
                   </span>
                 </h5>
                 <p className='text-muted m-0'>
-                  Add 1 or more addresses for the site. Note first address will be the default/main
-                  address.
+                  Add 1 or more addresses for the site. Note first address will
+                  be the default/main address.
                 </p>
 
                 {formErrors && formErrors.addresses?.message && (
@@ -103,7 +116,12 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                 )}
               </div>
 
-              <Button variant='primary' size='sm' className='ms-2' onClick={handleAddAddress}>
+              <Button
+                variant='primary'
+                size='sm'
+                className='ms-2'
+                onClick={handleAddAddress}
+              >
                 <Plus size={14} className='me-2' />
                 Add Address
               </Button>
@@ -132,7 +150,11 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                   </div>
 
                   {!_field.isDefault && (
-                    <Button variant='link' className='p-0' onClick={() => handleRemoveAddress(i)}>
+                    <Button
+                      variant='link'
+                      className='p-0'
+                      onClick={() => handleRemoveAddress(i)}
+                    >
                       <X size={20} className='text-danger' />
                     </Button>
                   )}
@@ -142,7 +164,10 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                   <Row>
                     <Col md={12}>
                       <Form.Group className='mb-3'>
-                        <RequiredLabel label='Street 1' id='street1' />
+                        <RequiredLabel
+                          label='Street 1'
+                          id={`addresses.${i}.street1`}
+                        />
 
                         <Controller
                           key={_field.id}
@@ -152,16 +177,20 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='street1'
+                                id={`addresses.${i}.street1`}
                                 type='text'
                                 placeholder='Enter street 1'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.street1?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.street1?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.street1?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.street1
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -170,7 +199,9 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={12}>
                       <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='street2'>Street 2</Form.Label>
+                        <Form.Label htmlFor={`addresses.${i}.street2`}>
+                          Street 2
+                        </Form.Label>
 
                         <Controller
                           key={_field.id}
@@ -179,7 +210,7 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                           render={({ field }) => (
                             <Form.Control
                               {...field}
-                              id='street2'
+                              id={`addresses.${i}.street2`}
                               type='text'
                               placeholder='Enter street 2'
                             />
@@ -190,7 +221,9 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={12}>
                       <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='street3'>Street 3</Form.Label>
+                        <Form.Label htmlFor={`addresses.${i}.street3`}>
+                          Street 3
+                        </Form.Label>
 
                         <Controller
                           key={_field.id}
@@ -199,7 +232,7 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                           render={({ field }) => (
                             <Form.Control
                               {...field}
-                              id='street3'
+                              id={`addresses.${i}.street3`}
                               type='text'
                               placeholder='Enter street 2'
                             />
@@ -210,7 +243,10 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <RequiredLabel label='State' id='province' />
+                        <RequiredLabel
+                          label='State'
+                          id={`addresses.${i}.province`}
+                        />
 
                         <Controller
                           key={_field.id}
@@ -220,16 +256,21 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='province'
+                                id={`addresses.${i}.province`}
                                 type='text'
                                 placeholder='Enter province'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.province?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.province?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.province
+                                  ?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.province
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -238,7 +279,10 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <RequiredLabel label='City' id='City' />
+                        <RequiredLabel
+                          label='City'
+                          id={`addresses.${i}.city`}
+                        />
 
                         <Controller
                           key={_field.id}
@@ -248,16 +292,17 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='City'
+                                id={`addresses.${i}.city`}
                                 type='text'
                                 placeholder='Enter city'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.city?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.city?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.city?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {formErrors.addresses?.[i]?.city?.message}
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -266,7 +311,10 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <RequiredLabel label='Postal Code' id='postalCode' />
+                        <RequiredLabel
+                          label='Postal Code'
+                          id={`addresses.${i}.postalCode`}
+                        />
 
                         <Controller
                           key={_field.id}
@@ -276,16 +324,21 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='postalCode'
+                                id={`addresses.${i}.postalCode`}
                                 type='text'
                                 placeholder='Enter postal code'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.postalCode?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.postalCode?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.postalCode
+                                  ?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.postalCode
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -294,7 +347,10 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <RequiredLabel label='Country' id='country' />
+                        <RequiredLabel
+                          label='Country'
+                          id={`addresses.${i}.country`}
+                        />
 
                         <Controller
                           key={_field.id}
@@ -304,24 +360,31 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Select
                                 {...field}
-                                inputId='country'
-                                instanceId='country'
+                                inputId={`addresses.${i}.country`}
+                                instanceId={`addresses.${i}.country`}
                                 onChange={(option) => field.onChange(option)}
                                 options={countriesOptions.data}
                                 placeholder='Search by coutry'
                                 isDisabled={
-                                  countriesOptions.isLoading || countriesOptions.length < 1
+                                  countriesOptions.isLoading ||
+                                  countriesOptions.length < 1
                                 }
                                 noOptionsMessage={() =>
-                                  countriesOptions.isLoading ? 'Loading...' : 'No countries found'
+                                  countriesOptions.isLoading
+                                    ? 'Loading...'
+                                    : 'No countries found'
                                 }
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.country?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.country?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.country?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.country
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -330,7 +393,9 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='longitude'>Longitude</Form.Label>
+                        <Form.Label htmlFor={`addresses.${i}.longitude`}>
+                          Longitude
+                        </Form.Label>
 
                         <Controller
                           key={_field.id}
@@ -340,16 +405,21 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='longitude'
+                                id={`addresses.${i}.longitude`}
                                 type='text'
                                 placeholder='Enter longitude'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.longitude?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.longitude?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.longitude
+                                  ?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.longitude
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />
@@ -358,7 +428,9 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
 
                     <Col md={4}>
                       <Form.Group className='mb-3'>
-                        <Form.Label htmlFor='latitude'>Latitude</Form.Label>
+                        <Form.Label htmlFor={`addresses.${i}.latitude`}>
+                          Latitude
+                        </Form.Label>
 
                         <Controller
                           key={_field.id}
@@ -368,16 +440,21 @@ const SiteAddressForm = ({ data, isLoading, handleNext, handlePrevious }) => {
                             <>
                               <Form.Control
                                 {...field}
-                                id='latitude'
+                                id={`addresses.${i}.latitude`}
                                 type='text'
                                 placeholder='Enter latitude'
                               />
 
-                              {formErrors && formErrors.addresses?.[i]?.latitude?.message && (
-                                <Form.Text className='text-danger'>
-                                  {formErrors.addresses?.[i]?.latitude?.message}
-                                </Form.Text>
-                              )}
+                              {formErrors &&
+                                formErrors.addresses?.[i]?.latitude
+                                  ?.message && (
+                                  <Form.Text className='text-danger'>
+                                    {
+                                      formErrors.addresses?.[i]?.latitude
+                                        ?.message
+                                    }
+                                  </Form.Text>
+                                )}
                             </>
                           )}
                         />

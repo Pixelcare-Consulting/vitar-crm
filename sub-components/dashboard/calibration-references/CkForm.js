@@ -13,7 +13,7 @@ import { Save } from 'react-bootstrap-icons';
 import { Controller, FormProvider, useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 
-const CkForm = ({ data }) => {
+const CkForm = ({ data, jobCalibrationRefId, path }) => {
   const router = useRouter();
   const auth = useAuth();
 
@@ -32,7 +32,7 @@ const CkForm = ({ data }) => {
     try {
       setIsLoading(true);
 
-      const collectionRef = collection(db, 'jobCalibrationReferences', 'CR000003', 'data');
+      const collectionRef = collection(db, 'jobCalibrationReferences', jobCalibrationRefId, 'data');
 
       await setDoc(
         doc(collectionRef, formData.refId),
@@ -52,9 +52,9 @@ const CkForm = ({ data }) => {
       setIsLoading(false);
 
       if (isSavedNew) {
-        window.location.assign(`/calibration-references/mass/ck/create`);
+        window.location.assign(`/calibration-references/${path}/ck/create`);
       } else {
-        router.push(`/calibration-references/mass/ck/edit-ck/${formData.refId}`);
+        router.push(`/calibration-references/${path}/ck/edit-ck/${formData.refId}`);
       }
     } catch (error) {
       console.error('Error submitting reference data:', error);
@@ -68,7 +68,7 @@ const CkForm = ({ data }) => {
   useEffect(() => {
     if (data) return;
 
-    const q = query(collection(db, 'jobCalibrationReferences', 'CR000003', 'data'));
+    const q = query(collection(db, 'jobCalibrationReferences', jobCalibrationRefId, 'data'));
 
     const unsubscribe = onSnapshot(
       q,
@@ -162,7 +162,7 @@ const CkForm = ({ data }) => {
                   disabled={isLoading}
                   type='button'
                   variant='outline-danger'
-                  onClick={() => router.push('/calibration-references/mass/ck')}
+                  onClick={() => router.push(`/calibration-references/${path}/ck`)}
                 >
                   Cancel
                 </Button>

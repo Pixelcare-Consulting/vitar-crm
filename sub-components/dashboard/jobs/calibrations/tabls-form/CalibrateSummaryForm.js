@@ -46,6 +46,7 @@ import toast from 'react-hot-toast';
 //* List of supported categories and variants as of the moment
 const SUPPORTED_CATEGORY = {
   MASS: { variants: ['standard-weight', 'weight-balance'] },
+  'TEMPERATURE & HUMIDITY': { variants: ['thermocouple'] },
 };
 
 const CalibrationSummaryForm = ({
@@ -807,7 +808,10 @@ const CalibrationSummaryForm = ({
                       {...field}
                       inputId='category'
                       instanceId='category'
-                      onChange={(option) => field.onChange(option)}
+                      onChange={(option) => {
+                        field.onChange(option);
+                        form.setValue('variant', '');
+                      }}
                       options={categoryOptions}
                       placeholder='Search by calibration category'
                       noOptionsMessage={() => 'No calibration category found'}

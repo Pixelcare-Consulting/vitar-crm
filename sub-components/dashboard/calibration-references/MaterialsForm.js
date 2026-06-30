@@ -65,7 +65,10 @@ const MaterialForm = ({ data }) => {
         const materialSnapshot = await getDocs(q);
 
         if (!materialSnapshot.empty) {
-          form.setError('code', { type: 'custom', message: 'Code already exist' });
+          form.setError('code', {
+            type: 'custom',
+            message: 'Code already exist',
+          });
           setIsLoading(false);
           setIsSavedNew(false);
           return;
@@ -78,7 +81,10 @@ const MaterialForm = ({ data }) => {
         doc(collectionRef, formData.refId),
         {
           ...formData,
-          ...(!data && { createdAt: serverTimestamp(), createdBy: auth.currentUser }),
+          ...(!data && {
+            createdAt: serverTimestamp(),
+            createdBy: auth.currentUser,
+          }),
           updatedAt: serverTimestamp(),
           updatedBy: auth.currentUser,
         },
@@ -139,8 +145,8 @@ const MaterialForm = ({ data }) => {
         <Form onSubmit={form.handleSubmit(handleSubmit)}>
           <Card className='shadow-none'>
             <Card.Body>
-              <h4 className='mb-0'>Accuracy Class Reference Info</h4>
-              <p className='text-muted fs-6'>Details about the accuracy class reference.</p>
+              <h4 className='mb-0'>Material Info</h4>
+              <p className='text-muted fs-6'>Details about the material.</p>
 
               <Row className='row-gap-3'>
                 <Form.Group as={Col} md={3}>
@@ -186,7 +192,7 @@ const MaterialForm = ({ data }) => {
                         <Form.Control
                           {...field}
                           id='material'
-                          placeholder='Enter material'
+                          placeholder='Enter Material'
                           type='text'
                         />
 
